@@ -7,22 +7,12 @@ using namespace undicht;
 
 int main() {
 
-    Engine::initialize();
+    Engine::initialize("undicht_0.37_engine/default_config.und");
 
     {
 
         window::Window* window = Engine::s_main_window;
 
-        // testing xml file loading
-        XmlFile file("res/SupertuxTex.dae");
-
-
-        std::vector<const XmlElement*> elements = file.getAllElements({"COLLADA", "library_effects", "effect", "profile_COMMON", "newparam sid=\"Tux_jpg-surface\""});
-
-        for(const XmlElement* elem : elements) {
-
-            elem->printRecursive();
-        }
 
         while(!window->shouldClose()) {
 
