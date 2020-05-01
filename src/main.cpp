@@ -1,4 +1,8 @@
 #include <iostream>
+
+#include <core/core.h>
+
+
 #include <engine/engine.h>
 
 #include <engine/file_loading/xml/xml_file.h>
@@ -12,6 +16,7 @@ int main() {
     {
 
         window::Window* window = Engine::s_main_window;
+        window->setTitle("Hello World! powered by undicht 0.37");
 
 
         while(!window->shouldClose()) {
