@@ -6,6 +6,7 @@
 #include <engine/engine.h>
 
 #include <engine/file_loading/xml/xml_file.h>
+#include <3D/master_renderer_3d.h>
 
 using namespace undicht;
 
@@ -18,8 +19,11 @@ int main() {
         window::Window* window = Engine::s_main_window;
         window->setTitle("Hello World! powered by undicht 0.37");
 
-
         while(!window->shouldClose()) {
+
+            MasterRenderer3D::beginFrame();
+
+            MasterRenderer3D::endFrame();
 
             window->update();
 
