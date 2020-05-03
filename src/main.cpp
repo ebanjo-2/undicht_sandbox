@@ -21,7 +21,7 @@ int main() {
 
         while(!window->shouldClose()) {
 
-            MasterRenderer3D::beginFrame();
+            MasterRenderer3D::newFrame();
 
             MasterRenderer3D::endFrame();
 
