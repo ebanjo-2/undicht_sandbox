@@ -18,7 +18,7 @@ int main() {
 
         window::Window* window = Engine::s_main_window;
         window->setTitle("Hello World! powered by undicht 0.37");
-        window->setWindowMode(true, false);
+        //window->setWindowMode(true, false);
 
         while(!window->shouldClose()) {
 
