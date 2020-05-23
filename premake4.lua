@@ -12,7 +12,7 @@ solution "undicht_sandbox"
 
         kind "ConsoleApp"
         files { "src/**.*" }
-		includedirs { "src", "undicht_0.37_engine/src", "undicht_0.37_engine/undicht_core/include" }
+		includedirs { "src", "undicht_0.37_engine/src", "undicht_0.37_engine/vendor", "undicht_0.37_engine/undicht_core/include" }
 		links { "core", "engine" }
 		
 		configuration "debug - linux"
