@@ -66,7 +66,9 @@ int main() {
 
         window::Window* window = Engine::s_main_window;
         window->setTitle("Hello World! powered by undicht 0.37");
-        //window->setWindowMode(true, false);
+
+        window->setWindowMode(true, false);
+        window->setWindowMode(false, true);
 
         PerspectiveCamera3D cam;
         cam.addTranslation(glm::vec3(0,2, 3));
