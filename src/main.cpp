@@ -69,7 +69,7 @@ int main() {
         window->setTitle("Hello World! powered by undicht 0.37");
 
         FreeCamera3D cam;
-        //cam.setRotation(cam.getRotation() * glm::angleAxis(45.0f, glm::vec3(0,1,0)));
+        cam.setRotation(glm::angleAxis(45.0f, glm::vec3(0,1,0)));
 
         MasterRenderer3D::setSceneCamera(cam);
 
