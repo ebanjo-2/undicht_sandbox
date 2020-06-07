@@ -30,11 +30,20 @@ int main() {
 
         SimpleGeometryGenerator mesh_generator;
         std::vector<float> cube_vertices;
-        mesh_generator.genCylinder(cube_vertices, 32, true);
+        std::vector<float> cube_indexed_vertices;
+        std::vector<int> cube_indices;
+        mesh_generator.genSphere(cube_vertices, 32);
+        mesh_generator.buildIndices(cube_vertices, core::BufferLayout({core::UND_VEC3F}), cube_indexed_vertices, cube_indices);
+
+        std::cout << "build raw vertices: " << cube_vertices.size() / 3 << "\n";
+        std::cout << "build indexed vertices " << cube_indexed_vertices.size() / 3<< "\n";
+        std::cout << "build indices: " << cube_indices.size() << "\n";
 
         Model3D cube;
         cube.getMesh().setLayout(core::BufferLayout({core::UND_VEC3F}));
-        cube.getMesh().setData(cube_vertices);
+        cube.getMesh().setData(cube_indexed_vertices);
+
+        cube.getMesh().setIndexData(cube_indices);
 
         cube.addTranslation(glm::vec3(0,-10,0));
 
