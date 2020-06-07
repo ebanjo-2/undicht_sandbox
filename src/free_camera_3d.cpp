@@ -32,6 +32,13 @@ void FreeCamera3D::update() {
         Engine::s_main_window->setCursorVisible(false);
 
         // moving
+        if(m_key_input.getKeyState(UND_KEY_LSHIFT)) {
+
+            m_movement_speed = 0.01;
+        } else {
+            m_movement_speed = 0.001f;
+        }
+
         if(m_key_input.getKeyState(UND_KEY_S)) {
 
             addTranslation(-1.0f * getViewDirection() * m_movement_speed);

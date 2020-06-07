@@ -10,54 +10,9 @@
 
 #include <free_camera_3d.h>
 
+#include <graphics/simple_geometry_generator.h>
+
 using namespace undicht;
-
-    // vertex positions of a cube (source: https://learnopengl.com/code_viewer_gh.php?code=src/1.getting_started/7.4.camera_class/camera_class.cpp)
-    const float vertices[] = {
-        -0.5f, -0.5f, -1.5f,
-         0.5f, -0.5f, -1.5f,
-         0.5f,  0.5f, -1.5f,
-         0.5f,  0.5f, -1.5f,
-        -0.5f,  0.5f, -1.5f,
-        -0.5f, -0.5f, -1.5f,
-
-        -0.5f, -0.5f,  1.5f,
-         0.5f, -0.5f,  1.5f,
-         0.5f,  0.5f,  1.5f,
-         0.5f,  0.5f,  1.5f,
-        -0.5f,  0.5f,  1.5f,
-        -0.5f, -0.5f,  1.5f,
-
-        -0.5f,  0.5f,  1.5f,
-        -0.5f,  0.5f, -1.5f,
-        -0.5f, -0.5f, -1.5f,
-        -0.5f, -0.5f, -1.5f,
-        -0.5f, -0.5f,  1.5f,
-        -0.5f,  0.5f,  1.5f,
-
-         0.5f,  0.5f,  1.5f,
-         0.5f,  0.5f, -1.5f,
-         0.5f, -0.5f, -1.5f,
-         0.5f, -0.5f, -1.5f,
-         0.5f, -0.5f,  1.5f,
-         0.5f,  0.5f,  1.5f,
-
-        -0.5f, -0.5f, -1.5f,
-         0.5f, -0.5f, -1.5f,
-         0.5f, -0.5f,  1.5f,
-         0.5f, -0.5f,  1.5f,
-        -0.5f, -0.5f,  1.5f,
-        -0.5f, -0.5f, -1.5f,
-
-        -0.5f,  0.5f, -1.5f,
-         0.5f,  0.5f, -1.5f,
-         0.5f,  0.5f,  1.5f,
-         0.5f,  0.5f,  1.5f,
-        -0.5f,  0.5f,  1.5f,
-        -0.5f,  0.5f, -1.5f
-    };
-
-    const core::BufferLayout vertex_layout({core::UND_VEC3F});
 
 int main() {
 
@@ -73,9 +28,13 @@ int main() {
 
         MasterRenderer3D::setSceneCamera(cam);
 
+        SimpleGeometryGenerator mesh_generator;
+        std::vector<float> cube_vertices;
+        mesh_generator.genCylinder(cube_vertices, 32, true);
+
         Model3D cube;
-        cube.getMesh().setLayout(vertex_layout);
-        cube.getMesh().setData(vertices, sizeof(vertices));
+        cube.getMesh().setLayout(core::BufferLayout({core::UND_VEC3F}));
+        cube.getMesh().setData(cube_vertices);
 
         cube.addTranslation(glm::vec3(0,-10,0));
 
