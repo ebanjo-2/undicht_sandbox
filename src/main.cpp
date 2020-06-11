@@ -32,7 +32,7 @@ int main() {
         std::vector<float> cube_vertices;
         std::vector<float> cube_indexed_vertices;
         std::vector<int> cube_indices;
-        mesh_generator.genSphere(cube_vertices, 32);
+        mesh_generator.genSphere(cube_vertices, 64, 0.5);
         mesh_generator.buildIndices(cube_vertices, core::BufferLayout({core::UND_VEC3F}), cube_indexed_vertices, cube_indices);
 
         std::cout << "build raw vertices: " << cube_vertices.size() / 3 << "\n";
@@ -45,7 +45,9 @@ int main() {
 
         cube.getMesh().setIndexData(cube_indices);
 
-        cube.addTranslation(glm::vec3(0,-10,0));
+        mesh_generator.loadTexture(cube.getTexture(), "res/Tux.jpg");
+
+        cube.addTranslation(glm::vec3(0,0,0));
 
 
         while(!window->shouldClose()) {
