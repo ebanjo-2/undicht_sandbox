@@ -7,6 +7,7 @@
 
 #include <engine/file_loading/xml/xml_file.h>
 #include <3D/master_renderer_3d.h>
+#include <3D/file_loading/collada/collada_file.h>
 
 #include <free_camera_3d.h>
 
@@ -28,26 +29,10 @@ int main() {
 
         MasterRenderer3D::setSceneCamera(cam);
 
-        SimpleGeometryGenerator mesh_generator;
-        std::vector<float> cube_vertices;
-        std::vector<float> cube_indexed_vertices;
-        std::vector<int> cube_indices;
-        mesh_generator.genSphere(cube_vertices, 64, 0.5);
-        mesh_generator.buildIndices(cube_vertices, core::BufferLayout({core::UND_VEC3F}), cube_indexed_vertices, cube_indices);
-
-        std::cout << "build raw vertices: " << cube_vertices.size() / 3 << "\n";
-        std::cout << "build indexed vertices " << cube_indexed_vertices.size() / 3<< "\n";
-        std::cout << "build indices: " << cube_indices.size() << "\n";
-
-        Model3D cube;
-        cube.getMesh().setLayout(core::BufferLayout({core::UND_VEC3F}));
-        cube.getMesh().setData(cube_indexed_vertices);
-
-        cube.getMesh().setIndexData(cube_indices);
-
-        mesh_generator.loadTexture(cube.getTexture(), "res/Tux.jpg");
-
-        cube.addTranslation(glm::vec3(0,0,0));
+        Model3D tux;
+        ColladaFile model_file("res/SupertuxTex.dae");
+        model_file.loadModel(tux);
+        model_file.loadTexture(tux.m_child_models.at(0).getTexture(), "res/Tux.jpg");
 
 
         while(!window->shouldClose()) {
@@ -57,7 +42,7 @@ int main() {
             MasterRenderer3D::newFrame();
 
             MasterRenderer3D::s_forward_renderer->prepare();
-            MasterRenderer3D::s_forward_renderer->drawModel(cube);
+            MasterRenderer3D::s_forward_renderer->drawModel(tux);
 
             MasterRenderer3D::endFrame();
 
