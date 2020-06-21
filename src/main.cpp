@@ -30,9 +30,10 @@ int main() {
         MasterRenderer3D::setSceneCamera(cam);
 
         Model3D tux;
-        ColladaFile model_file("res/SupertuxTex.dae");
+        ColladaFile model_file("res/sponza_collada/sponza.dae");
+        //ColladaFile model_file("res/SupertuxTex.dae");
         model_file.loadModel(tux);
-        model_file.loadTexture(tux.m_child_models.at(0).getTexture(), "res/Tux.jpg");
+        //model_file.loadTexture(tux.m_child_models.at(0).getTexture(), "res/Tux.jpg");
 
 
         while(!window->shouldClose()) {
