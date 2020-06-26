@@ -31,12 +31,15 @@ int main() {
 
         Model3D tux;
         ColladaFile model_file("res/sponza_collada/sponza.dae");
-        //ColladaFile model_file("res/SupertuxTex.dae");
         model_file.loadModel(tux);
-        //model_file.loadTexture(tux.m_child_models.at(0).getTexture(), "res/Tux.jpg");
 
+        model_file.open("res/SupertuxTex.dae");
+        model_file.loadModel(tux);
+
+        double start_time;
 
         while(!window->shouldClose()) {
+
 
             cam.update();
 
@@ -47,7 +50,11 @@ int main() {
 
             MasterRenderer3D::endFrame();
 
+
             window->update();
+
+            std::cout << "fps: " << 1 / (core::Core::getTime() - start_time) << "\n";
+            start_time = core::Core::getTime();
 
         }
 
